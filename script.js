@@ -9,50 +9,92 @@ document.addEventListener('DOMContentLoaded', () => {
     canvas.width = 800;
     canvas.height = 600;
 
+    // Adjust the existing imageLoader event listener to also reset dragover feedback
     imageLoader.addEventListener('change', (event) => {
+        canvasContainer.style.border = '1px dashed #ccc'; // Reset border if a file is chosen via input
         const file = event.target.files[0];
         if (file) {
             const reader = new FileReader();
             reader.onload = (e) => {
                 const img = new Image();
                 img.onload = () => {
-                    // Clear previous image
                     ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-                    // Calculate aspect ratio to fit image within canvas display dimensions
-                    // while maintaining aspect ratio.
-                    const canvasDisplayWidth = canvas.clientWidth;
-                    const canvasDisplayHeight = canvas.clientHeight;
-
                     let drawWidth = img.width;
                     let drawHeight = img.height;
                     let x = 0;
                     let y = 0;
-
-                    // Adjust image size to fit canvas if it's larger
                     if (drawWidth > canvas.width || drawHeight > canvas.height) {
                         const ratio = Math.min(canvas.width / img.width, canvas.height / img.height);
                         drawWidth = img.width * ratio;
                         drawHeight = img.height * ratio;
                     }
-
-                    // Center the image on the canvas
                     x = (canvas.width - drawWidth) / 2;
                     y = (canvas.height - drawHeight) / 2;
-
-                    // Draw the image
                     ctx.drawImage(img, x, y, drawWidth, drawHeight);
                 }
                 img.src = e.target.result;
             }
             reader.readAsDataURL(file);
         } else {
-            // Clear canvas if no file is selected or selection is cancelled
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-            // Optionally, display a message
-            // ctx.fillStyle = '#777';
-            // ctx.textAlign = 'center';
-            // ctx.fillText("No image loaded", canvas.width / 2, canvas.height / 2);
+        }
+    });
+
+    // Drag and Drop functionality
+    const canvasContainer = document.querySelector('.canvas-container'); // Or directly to canvas if preferred
+
+    canvasContainer.addEventListener('dragover', (event) => {
+        event.stopPropagation();
+        event.preventDefault();
+        // Add some visual feedback if desired
+        canvasContainer.style.border = '2px dashed #007bff'; // Example feedback
+    });
+
+    canvasContainer.addEventListener('dragleave', (event) => {
+        event.stopPropagation();
+        event.preventDefault();
+        // Remove visual feedback
+        canvasContainer.style.border = '1px dashed #ccc'; // Reset to original or remove
+    });
+
+    canvasContainer.addEventListener('drop', (event) => {
+        event.stopPropagation();
+        event.preventDefault();
+        canvasContainer.style.border = '1px dashed #ccc'; // Reset border
+
+        const files = event.dataTransfer.files;
+        if (files.length > 0) {
+            const file = files[0];
+            if (file.type.startsWith('image/')) {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    const img = new Image();
+                    img.onload = () => {
+                        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+                        // Calculate aspect ratio to fit image within canvas
+                        let drawWidth = img.width;
+                        let drawHeight = img.height;
+                        let x = 0;
+                        let y = 0;
+
+                        if (drawWidth > canvas.width || drawHeight > canvas.height) {
+                            const ratio = Math.min(canvas.width / img.width, canvas.height / img.height);
+                            drawWidth = img.width * ratio;
+                            drawHeight = img.height * ratio;
+                        }
+
+                        x = (canvas.width - drawWidth) / 2;
+                        y = (canvas.height - drawHeight) / 2;
+
+                        ctx.drawImage(img, x, y, drawWidth, drawHeight);
+                    };
+                    img.src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            } else {
+                alert("Please drop an image file.");
+            }
         }
     });
 });

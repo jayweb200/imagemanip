@@ -139,3 +139,82 @@ footer p {
     padding-bottom: 15px;
     margin-bottom: 20px;
 }
+
+/* Styling for Elements Library */
+.elements-library {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    width: 300px; /* Fixed width for elements library panel */
+    overflow-y: auto; /* Allow scrolling if content exceeds height */
+    max-height: calc(100vh - 180px); /* Adjust max-height to fit viewport, considering header/footer/padding */
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.elements-library h2 {
+    margin-top: 0;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 15px;
+    margin-bottom: 5px; /* Reduced margin for tighter spacing */
+}
+
+.element-category {
+    padding-bottom: 10px;
+    /* border-bottom: 1px solid #eee; */ /* Optional: separator for categories */
+}
+
+.element-category:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.element-category h3 {
+    font-size: 1.1em;
+    color: #333;
+    margin-top: 0;
+    margin-bottom: 10px;
+    background-color: #f9f9f9; /* Slight background for category titles */
+    padding: 5px 8px;
+    border-radius: 4px;
+    border: 1px solid #eee;
+}
+
+.element-item-list {
+    display: flex;
+    flex-wrap: wrap; /* Allow items to wrap to next line */
+    gap: 8px; /* Space between items */
+}
+
+.element-item-placeholder {
+    background-color: #e9e9e9;
+    padding: 10px 15px;
+    border-radius: 4px;
+    font-size: 0.9em;
+    color: #555;
+    cursor: pointer; /* Indicate items are interactive */
+    border: 1px solid #ddd;
+    text-align: center;
+    min-width: 80px; /* Minimum width for items */
+    transition: background-color 0.2s ease;
+}
+
+.element-item-placeholder:hover {
+    background-color: #dcdcdc;
+}
+
+/* Adjust main layout to accommodate the new elements panel */
+/* The main tag already has 'display: flex', so we just need to ensure
+   the canvas container can still grow. The .elements-library has a fixed width.
+   The .controls also has a fixed width.
+   .canvas-container already has flex-grow: 1; which is good.
+*/
+
+/* Ensure canvas container still behaves correctly with the new sibling */
+.canvas-container {
+    /* flex-grow: 1; is already set, which is correct */
+    /* min-width: 0; /* Might be needed in some flex scenarios to prevent overflow */
+}
