@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Image Editor</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Simple Image Editor</h1>
+    </header>
+    <main>
+        <div class="controls">
+            <h2>Controls</h2>
+            <input type="file" id="imageLoader" name="imageLoader" accept="image/*">
+            <button id="resizeBtn">Resize</button>
+            <button id="cropBtn">Crop</button>
+            <button id="filterBtn">Apply Filter</button>
+            <button id="textBtn">Add Text</button>
+            <button id="saveBtn">Save Image</button>
+        </div>
+        <div class="canvas-container">
+            <canvas id="imageCanvas"></canvas>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2023 Image Editor</p>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>
