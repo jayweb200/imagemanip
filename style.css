@@ -99,3 +99,43 @@ footer {
 footer p {
     margin: 0;
 }
+
+/* Styling for new tool groups */
+.tool-group {
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #eee;
+}
+
+.tool-group:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.tool-group h3 {
+    font-size: 1.1em;
+    color: #333;
+    margin-top: 0;
+    margin-bottom: 10px;
+    /* text-decoration: underline; */
+}
+
+/* Ensure buttons in tool groups stack nicely */
+.tool-group button, .tool-group input[type="file"] {
+    display: block; /* Make each button/input take full width of its container */
+    width: 100%;    /* Take full width */
+    margin-bottom: 8px; /* Add some space between stacked items */
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+}
+
+.tool-group button:last-child {
+    margin-bottom: 0;
+}
+
+/* Adjust main controls panel title */
+.controls h2 {
+    border-bottom: 1px solid #ddd; /* Make it a bit more prominent */
+    padding-bottom: 15px;
+    margin-bottom: 20px;
+}

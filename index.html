@@ -12,13 +12,47 @@
     </header>
     <main>
         <div class="controls">
-            <h2>Controls</h2>
-            <input type="file" id="imageLoader" name="imageLoader" accept="image/*">
-            <button id="resizeBtn">Resize</button>
-            <button id="cropBtn">Crop</button>
-            <button id="filterBtn">Apply Filter</button>
-            <button id="textBtn">Add Text</button>
-            <button id="saveBtn">Save Image</button>
+            <h2>Tools</h2>
+
+            <div class="tool-group">
+                <h3>File</h3>
+                <input type="file" id="imageLoader" name="imageLoader" accept="image/*" title="Load Image">
+                <button id="saveBtn" title="Save Image">Save Image</button>
+                <button id="clearCanvasBtn" title="Clear Canvas">Clear</button>
+            </div>
+
+            <div class="tool-group">
+                <h3>Transform</h3>
+                <button id="resizeBtn" title="Resize">Resize</button>
+                <button id="cropBtn" title="Crop">Crop</button>
+                <button id="rotateBtn" title="Rotate">Rotate</button>
+            </div>
+
+            <div class="tool-group">
+                <h3>Adjustments & Filters</h3>
+                <button id="brightnessBtn" title="Brightness/Contrast">Brightness/Contrast</button>
+                <button id="saturationBtn" title="Saturation">Saturation</button>
+                <button id="grayscaleBtn" title="Grayscale">Grayscale</button>
+                <button id="blurBtn" title="Blur">Blur</button>
+                <button id="sharpenBtn" title="Sharpen">Sharpen</button>
+                <button id="moreFiltersBtn" title="More Filters">More Filters...</button>
+            </div>
+
+            <div class="tool-group">
+                <h3>Text & Drawing</h3>
+                <button id="addTextBtn" title="Add Text">Add Text</button>
+                <button id="drawShapeBtn" title="Draw Shape">Draw Shape</button>
+                <button id="freeDrawBtn" title="Free Draw">Free Draw</button>
+            </div>
+
+            <div class="tool-group">
+                <h3>Animation (GIF/Video)</h3>
+                <button id="addFrameBtn" title="Add Frame">Add Frame</button>
+                <button id="manageFramesBtn" title="Manage Frames">Manage Frames</button>
+                <button id="exportGifBtn" title="Export as GIF">Export GIF</button>
+                <button id="exportVideoBtn" title="Export as Video">Export Video</button>
+            </div>
+
         </div>
         <div class="canvas-container">
             <canvas id="imageCanvas"></canvas>
